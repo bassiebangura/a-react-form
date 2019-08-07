@@ -1,26 +1,66 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      firstName: "First Name",
+      lastName: "Last Name",
+      isFriendly: false
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    const { name, value, type, checked  } = event.target;
+    type === checked ? this.setState({[name] : checked}) : this.setState({
+      [name]: value
+    });
+  }
+  render() {
+    return (
+      <form>
+        <input
+          name="firstName"
+          type="text"
+       
+          value={this.state.firstName}//*this creates controlled input; resulting in single source of truth 
+          onChange={this.handleChange}
+        />
+
+        <br />
+        <input
+          name="lastName"
+          type="text"
+       
+    
+          value={this.state.lastName}//this creates controlled input; resulting in single source of truth 
+
+          onChange={this.handleChange}
+        />
+        <br />
+         
+        <textarea 
+                    value={"Some default value"}
+                    onChange={this.handleChange}
+                />
+                
+                <br />
+                
+                <label>
+                    <input 
+                        type="checkbox" 
+                        name="isFriendly"
+                        checked={this.state.isFriendly}
+                        onChange={this.handleChange}
+                    /> Is friendly?
+                </label>
+        <div>{`${this.state.firstName} ${this.state.lastName}`}</div>
+       
+      </form>
+    );
+  }
 }
 
 export default App;
