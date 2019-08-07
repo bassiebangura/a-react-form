@@ -56,6 +56,22 @@ class App extends Component {
                         onChange={this.handleChange}
                     /> Is friendly?
                 </label>
+                <label>
+                    <input 
+                        type="radio" 
+                        name="gender"
+                        checked={this.state.isFriendly}
+                        onChange={this.handleChange}
+                    /> Male
+                </label>
+                <label>
+                    <input 
+                        type="radio" 
+                        name="gender"
+                        checked={this.state.isFriendly}
+                        onChange={this.handleChange}
+                    /> Female
+                </label>
         <div>{`${this.state.firstName} ${this.state.lastName}`}</div>
        
       </form>
