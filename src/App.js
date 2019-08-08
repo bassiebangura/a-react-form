@@ -8,7 +8,8 @@ class App extends Component {
       firstName: "First Name",
       lastName: "Last Name",
       isFriendly: false,
-      gender: ""
+      gender: "",
+      favColor: "blue"
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -23,7 +24,7 @@ class App extends Component {
   }
   render() {
     return (
-      <form>
+      <form >
         <input
           name="firstName"
           type="text"
@@ -73,7 +74,20 @@ class App extends Component {
           />{" "}
           Female
         </label>
-        <div>{`${this.state.firstName} ${this.state.lastName}`}</div>
+        <br />
+        <label>Favorite Color: </label>
+        <select
+        name="favColor"
+        value={this.state.favColor}
+        onChange={this.handleChange}>
+          <option value="blue">Blue</option>
+          <option value="yellow">Yellow</option>
+          <option value="green">Green</option>
+          <opiton value="white">White</opiton>
+          <option value="red">Red</option>
+        </select>
+        <div>{`${this.state.firstName} ${this.state.lastName} you are a ${this.state.gender}. And ur color: ${this.state.favColor}`}</div>
+      <button >Submit</button>
       </form>
     );
   }
