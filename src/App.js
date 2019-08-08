@@ -9,22 +9,31 @@ class App extends Component {
       lastName: "Last Name",
       isFriendly: false,
       gender: "",
-      favColor: "blue"
+      favColor: "blue",
+      isCheckedPeanuts: false,
+      peanutsVal: "",
+      isCheckedDiary: false,
+      diaryVal: ""
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
     const { name, value, type, checked } = event.target;
-    type === "checkbox"
-      ? this.setState({ [name]: checked })
+    type === "checkbox" && value === "Peanuts"
+      ? this.setState({ [name]: checked, peanutsVal: checked ? value : "" })
+      : this.setState({
+          [name]: value
+        });
+    type === "checkbox" && value === "Diary"
+      ? this.setState({ [name]: checked, diaryVal: checked ? value : "" })
       : this.setState({
           [name]: value
         });
   }
   render() {
     return (
-      <form >
+      <form>
         <input
           name="firstName"
           type="text"
@@ -77,17 +86,48 @@ class App extends Component {
         <br />
         <label>Favorite Color: </label>
         <select
-        name="favColor"
-        value={this.state.favColor}
-        onChange={this.handleChange}>
+          name="favColor"
+          value={this.state.favColor}
+          onChange={this.handleChange}
+        >
+          <option value="">-- Please Choose a Color --</option>
           <option value="blue">Blue</option>
           <option value="yellow">Yellow</option>
           <option value="green">Green</option>
           <opiton value="white">White</opiton>
           <option value="red">Red</option>
         </select>
-        <div>{`${this.state.firstName} ${this.state.lastName} you are a ${this.state.gender}. And ur color: ${this.state.favColor}`}</div>
-      <button >Submit</button>
+<br />
+        <label>
+          <input
+            onChange={this.handleChange}
+            type="checkbox"
+            value="Peanuts"
+            name="isCheckedPeanuts"
+            checked={this.state.name}
+          />{" "}
+          Peanuts
+        </label>
+        <label>
+          <input
+            onChange={this.handleChange}
+            type="checkbox"
+            value="Diary"
+            name="isCheckedDairy"
+            checked={this.state.name}
+          />{" "}
+          Dairy
+        </label>
+        <div>
+          {`${this.state.firstName} ${this.state.lastName} you are a ${
+            this.state.gender
+          }. And ur color: ${this.state.favColor}`}
+          <p>
+            Your dietary restrictions: 
+            {`${this.state.peanutsVal}  ${this.state.diaryVal}`}
+          </p>
+        </div>
+        <button>Submit</button>
       </form>
     );
   }
